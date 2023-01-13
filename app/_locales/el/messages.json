@@ -4382,9 +4382,6 @@
   "yourNFTmayBeAtRisk": {
     "message": "Τα NFT μπορεί να κινδυνεύουν"
   },
-  "yourPrivateSeedPhrase": {
-    "message": "Η προσωπική σας Μυστική Φράση Ανάκτησης"
-  },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Μηδενική τιμή καυσίμου κατά την επιτάχυνση"
   }

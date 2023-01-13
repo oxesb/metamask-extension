@@ -4382,9 +4382,6 @@
   "yourNFTmayBeAtRisk": {
     "message": "Ваш NFT могут быть в опасности"
   },
-  "yourPrivateSeedPhrase": {
-    "message": "Ваша личная секретная фраза для восстановления"
-  },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Нулевая цена газа при ускорении"
   }

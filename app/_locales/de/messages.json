@@ -4382,9 +4382,6 @@
   "yourNFTmayBeAtRisk": {
     "message": "Ihr NFT könnte gefährdet sein"
   },
-  "yourPrivateSeedPhrase": {
-    "message": "Ihr privater Seed-Schlüssel"
-  },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Keine Gaskosten bei Beschleunigung"
   }

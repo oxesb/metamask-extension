@@ -2958,9 +2958,6 @@
   "save": {
     "message": "Kaydet"
   },
-  "saveAsCsvFile": {
-    "message": "CSV dosyası olarak kaydet"
-  },
   "scanInstructions": {
     "message": "QR kodu kameranızın önüne getirin"
   },
@@ -4384,9 +4381,6 @@
   },
   "yourNFTmayBeAtRisk": {
     "message": "NFT'niz tehlikede olabilir"
-  },
-  "yourPrivateSeedPhrase": {
-    "message": "Özel Gizli Kurtarma İfadeniz"
   },
   "zeroGasPriceOnSpeedUpError": {
     "message": "Sıfır gaz fiyatı hızlandırmada"
