@@ -46,7 +46,6 @@ import {
   ///: BEGIN:ONLY_INCLUDE_IN(flask)
   removeSnapError,
   ///: END:ONLY_INCLUDE_IN
-  setTransactionSecurityCheckEnabled,
 } from '../../store/actions';
 import {
   hideWhatsNewPopup,
@@ -157,8 +156,6 @@ const mapStateToProps = (state) => {
     newTokensImported: getNewTokensImported(state),
     newCustomNetworkAdded: appState.newCustomNetworkAdded,
     onboardedInThisUISession: appState.onboardedInThisUISession,
-    openSeaTransactionSecurityProviderPopoverHasBeenShown:
-      metamask.openSeaTransactionSecurityProviderPopoverHasBeenShown,
   };
 };
 
@@ -204,8 +201,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setPortfolioTooltipWasShownInThisSession: () =>
     dispatch(setPortfolioTooltipWasShownInThisSession()),
-  setTransactionSecurityCheckEnabled: () =>
-    dispatch(setTransactionSecurityCheckEnabled(true)),
 });
 
 export default compose(
