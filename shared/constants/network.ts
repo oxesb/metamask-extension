@@ -84,9 +84,9 @@ export type RPCDefinition = {
    */
   chainId: ChainId;
   /**
-   * The nickname for the network
+   * The chainName for the network
    */
-  nickname: string;
+  chainName: string;
   /**
    * The URL for the client to send network requests to
    */
@@ -456,15 +456,18 @@ export const BUILT_IN_NETWORKS = {
     networkId: NETWORK_IDS.GOERLI,
     chainId: CHAIN_IDS.GOERLI,
     ticker: TEST_NETWORK_TICKER_MAP[NETWORK_TYPES.GOERLI],
+    blockExplorerUrl: `https://${NETWORK_TYPES.GOERLI}.etherscan.io`,
   },
   [NETWORK_TYPES.SEPOLIA]: {
     networkId: NETWORK_IDS.SEPOLIA,
     chainId: CHAIN_IDS.SEPOLIA,
     ticker: TEST_NETWORK_TICKER_MAP[NETWORK_TYPES.SEPOLIA],
+    blockExplorerUrl: `https://${NETWORK_TYPES.SEPOLIA}.etherscan.io`,
   },
   [NETWORK_TYPES.MAINNET]: {
     networkId: NETWORK_IDS.MAINNET,
     chainId: CHAIN_IDS.MAINNET,
+    blockExplorerUrl: `https://etherscan.io`,
   },
   [NETWORK_TYPES.LOCALHOST]: {
     networkId: NETWORK_IDS.LOCALHOST,
@@ -883,7 +886,7 @@ export const BUYABLE_CHAINS_MAP: {
 export const FEATURED_RPCS: RPCDefinition[] = [
   {
     chainId: CHAIN_IDS.ARBITRUM,
-    nickname: ARBITRUM_DISPLAY_NAME,
+    chainName: ARBITRUM_DISPLAY_NAME,
     rpcUrl: `https://arbitrum-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.ARBITRUM,
     rpcPrefs: {
@@ -893,7 +896,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.AURORA,
-    nickname: AURORA_DISPLAY_NAME,
+    chainName: AURORA_DISPLAY_NAME,
     rpcUrl: `https://aurora-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.AURORA,
     rpcPrefs: {
@@ -903,7 +906,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.AVALANCHE,
-    nickname: AVALANCHE_DISPLAY_NAME,
+    chainName: AVALANCHE_DISPLAY_NAME,
     rpcUrl: `https://avalanche-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.AVALANCHE,
     rpcPrefs: {
@@ -913,7 +916,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.BSC,
-    nickname: BNB_DISPLAY_NAME,
+    chainName: BNB_DISPLAY_NAME,
     rpcUrl: 'https://bsc-dataseed.binance.org/',
     ticker: CURRENCY_SYMBOLS.BNB,
     rpcPrefs: {
@@ -923,7 +926,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.FANTOM,
-    nickname: FANTOM_DISPLAY_NAME,
+    chainName: FANTOM_DISPLAY_NAME,
     rpcUrl: 'https://rpc.ftm.tools/',
     ticker: CURRENCY_SYMBOLS.FANTOM,
     rpcPrefs: {
@@ -933,7 +936,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.HARMONY,
-    nickname: HARMONY_DISPLAY_NAME,
+    chainName: HARMONY_DISPLAY_NAME,
     rpcUrl: 'https://api.harmony.one/',
     ticker: CURRENCY_SYMBOLS.HARMONY,
     rpcPrefs: {
@@ -943,7 +946,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.OPTIMISM,
-    nickname: OPTIMISM_DISPLAY_NAME,
+    chainName: OPTIMISM_DISPLAY_NAME,
     rpcUrl: `https://optimism-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.ETH,
     rpcPrefs: {
@@ -953,7 +956,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.PALM,
-    nickname: PALM_DISPLAY_NAME,
+    chainName: PALM_DISPLAY_NAME,
     rpcUrl: `https://palm-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.PALM,
     rpcPrefs: {
@@ -963,7 +966,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.POLYGON,
-    nickname: `${POLYGON_DISPLAY_NAME} ${capitalize(NETWORK_TYPES.MAINNET)}`,
+    chainName: `${POLYGON_DISPLAY_NAME} ${capitalize(NETWORK_TYPES.MAINNET)}`,
     rpcUrl: `https://polygon-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.MATIC,
     rpcPrefs: {
@@ -973,7 +976,7 @@ export const FEATURED_RPCS: RPCDefinition[] = [
   },
   {
     chainId: CHAIN_IDS.CELO,
-    nickname: CELO_DISPLAY_NAME,
+    chainName: CELO_DISPLAY_NAME,
     rpcUrl: `https://celo-mainnet.infura.io/v3/${infuraProjectId}`,
     ticker: CURRENCY_SYMBOLS.CELO,
     rpcPrefs: {
