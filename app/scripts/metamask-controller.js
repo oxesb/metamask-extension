@@ -3970,6 +3970,9 @@ export default class MetamaskController extends EventEmitter {
             },
           );
         },
+        delCustomRpc: async (rpcUrl) => {
+          await this.preferencesController.removeFromFrequentRpcList(rpcUrl);
+        },
         findCustomRpcBy: this.findCustomRpcBy.bind(this),
         getCurrentChainId: this.networkController.getCurrentChainId.bind(
           this.networkController,
