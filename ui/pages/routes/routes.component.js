@@ -105,15 +105,11 @@ export default class Routes extends Component {
     browserEnvironmentBrowser: PropTypes.string,
     theme: PropTypes.string,
     sendStage: PropTypes.string,
-    isNetworkUsed: PropTypes.bool,
-    allAccountsOnNetworkAreEmpty: PropTypes.bool,
-    isTestNet: PropTypes.bool,
-    currentChainId: PropTypes.string,
     shouldShowSeedPhraseReminder: PropTypes.bool,
     portfolioTooltipIsBeingShown: PropTypes.bool,
     forgottenPassword: PropTypes.bool,
-    isCurrentProviderCustom: PropTypes.bool,
     completedOnboarding: PropTypes.bool,
+    shouldShowNewNetworkInfo: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -368,28 +364,15 @@ export default class Routes extends Component {
       isMouseUser,
       browserEnvironmentOs: os,
       browserEnvironmentBrowser: browser,
-      isNetworkUsed,
-      allAccountsOnNetworkAreEmpty,
-      isTestNet,
-      currentChainId,
       shouldShowSeedPhraseReminder,
+      shouldShowNewNetworkInfo,
       portfolioTooltipIsBeingShown,
-      isCurrentProviderCustom,
       completedOnboarding,
     } = this.props;
     const loadMessage =
       loadingMessage || isNetworkLoading
         ? this.getConnectingLabel(loadingMessage)
         : null;
-
-    const shouldShowNetworkInfo =
-      isUnlocked &&
-      currentChainId &&
-      !isTestNet &&
-      !isNetworkUsed &&
-      !isCurrentProviderCustom &&
-      completedOnboarding &&
-      allAccountsOnNetworkAreEmpty;
 
     const windowType = getEnvironmentType();
 
@@ -415,7 +398,7 @@ export default class Routes extends Component {
         }}
       >
         {shouldShowNetworkDeprecationWarning && <DeprecatedTestNetworks />}
-        {shouldShowNetworkInfo && <NewNetworkInfo />}
+        {shouldShowNewNetworkInfo && <NewNetworkInfo />}
         <QRHardwarePopover />
         <Modal />
         <Alert visible={this.props.alertOpen} msg={alertMessage} />
