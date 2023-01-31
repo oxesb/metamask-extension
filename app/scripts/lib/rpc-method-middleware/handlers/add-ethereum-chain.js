@@ -244,10 +244,8 @@ async function addEthereumChainHandler(
     );
   }
 
-  let customRpc;
-
   try {
-    customRpc = await requestUserApproval({
+    const customRpc = await requestUserApproval({
       origin,
       type: MESSAGE_TYPE.ADD_ETHEREUM_CHAIN,
       requestData: {
@@ -258,54 +256,9 @@ async function addEthereumChainHandler(
         ticker,
       },
     });
-  } catch (error) {
-    return end(error);
-  }
 
-  let customRpcTarget;
-  try {
-    customRpcTarget = await requestUserApproval({
-      origin,
-      type: MESSAGE_TYPE.SWITCH_ETHEREUM_CHAIN,
-      requestData: {
-        rpcUrl: firstValidRPCUrl,
-        chainId: _chainId,
-        nickname: _chainName,
-        ticker,
-      },
-    });
-  } catch (error) {
-    // For the purposes of this method, it does not matter if the user
-    // declines to switch the selected network. However, other errors indicate
-    // that something is wrong.
-    if (error.code !== errorCodes.provider.userRejectedRequest) {
-      return end(error);
-    }
-  }
-
-  let endpointChainId;
-  try {
-    endpointChainId = await jsonRpcRequest(firstValidRPCUrl, 'eth_chainId');
-  } catch (err) {
-    return end(
-      ethErrors.rpc.internal({
-        message: `Request for method 'eth_chainId on ${firstValidRPCUrl} failed`,
-        data: { networkErr: err },
-      }),
-    );
-  }
-
-  if (_chainId !== endpointChainId) {
-    return end(
-      ethErrors.rpc.invalidParams({
-        message: `Chain ID returned by RPC URL ${firstValidRPCUrl} does not match ${_chainId}`,
-        data: { chainId: endpointChainId },
-      }),
-    );
-  }
-
-  try {
     addCustomRpc(customRpc);
+
     sendMetrics({
       event: 'Custom Network Added',
       category: EVENT.CATEGORIES.NETWORK,
@@ -324,11 +277,28 @@ async function addEthereumChainHandler(
   } catch (error) {
     return end(error);
   }
+
   // Ask the user to switch the network
   try {
-    updateRpcTarget(customRpcTarget);
+    await updateRpcTarget(
+      await requestUserApproval({
+        origin,
+        type: MESSAGE_TYPE.SWITCH_ETHEREUM_CHAIN,
+        requestData: {
+          rpcUrl: firstValidRPCUrl,
+          chainId: _chainId,
+          nickname: _chainName,
+          ticker,
+        },
+      }),
+    );
   } catch (error) {
-    return end(error);
+    // For the purposes of this method, it does not matter if the user
+    // declines to switch the selected network. However, other errors indicate
+    // that something is wrong.
+    if (error.code !== errorCodes.provider.userRejectedRequest) {
+      return end(error);
+    }
   }
   return end();
 }

@@ -14,6 +14,7 @@ import {
 import { DEFAULT_ROUTE } from '../../../helpers/constants/routes';
 import ZENDESK_URLS from '../../../helpers/constants/zendesk-url';
 import fetchWithCache from '../../../../shared/lib/fetch-with-cache';
+import { jsonRpcRequest } from '../../../../shared/modules/rpc.utils';
 
 const UNRECOGNIZED_CHAIN = {
   id: 'UNRECOGNIZED_CHAIN',
@@ -332,6 +333,23 @@ function getValues(pendingApproval, t, actions, history) {
     cancelText: t('cancel'),
     submitText: t('approveButtonText'),
     onSubmit: async () => {
+      let endpointChainId;
+      try {
+        endpointChainId = await jsonRpcRequest(
+          pendingApproval.requestData.rpcUrl,
+          'eth_chainId',
+        );
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
+      if (pendingApproval.requestData.chainId !== endpointChainId) {
+        return actions.rejectPendingApproval(
+          pendingApproval.id,
+          ethErrors.provider.userRejectedRequest().serialize(),
+        );
+      }
+
       await actions.resolvePendingApproval(
         pendingApproval.id,
         pendingApproval.requestData,
@@ -340,6 +358,7 @@ function getValues(pendingApproval, t, actions, history) {
         actions.addCustomNetwork(pendingApproval.requestData);
         history.push(DEFAULT_ROUTE);
       }
+      return {};
     },
     onCancel: () =>
       actions.rejectPendingApproval(
