@@ -255,6 +255,10 @@ async function addEthereumChainHandler(
         ticker,
       },
     });
+    console.log(`>>>>>`, customRpc);
+    // TODO handle validation error here
+    //     `Request for method 'eth_chainId on ${customRpcUrl} failed`,
+    //     `Chain ID returned by RPC URL ${customRpcUrl} does not match ${endpointChainId}`,
 
     addCustomRpc(customRpc);
 

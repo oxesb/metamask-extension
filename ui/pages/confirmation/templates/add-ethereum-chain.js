@@ -155,6 +155,7 @@ function getState(pendingApproval) {
 
 function getValues(pendingApproval, t, actions, history) {
   const originIsMetaMask = pendingApproval.origin === 'metamask';
+  const customRpcUrl = pendingApproval.requestData.rpcUrl;
   return {
     content: [
       {
@@ -335,19 +336,22 @@ function getValues(pendingApproval, t, actions, history) {
     loadingText: t('addingCustomNetwork'),
     onSubmit: async () => {
       let endpointChainId;
+      let err;
       try {
-        endpointChainId = await jsonRpcRequest(
-          pendingApproval.requestData.rpcUrl,
-          'eth_chainId',
-        );
-      } catch (err) {
+        endpointChainId = await jsonRpcRequest(customRpcUrl, 'eth_chainId');
+      } catch (_err) {
         // eslint-disable-next-line no-console
-        console.error(err);
+        console.error(
+          `Request for method 'eth_chainId on ${customRpcUrl} failed`,
+        );
+        err = _err;
       }
+
       if (pendingApproval.requestData.chainId !== endpointChainId) {
         return actions.rejectPendingApproval(
           pendingApproval.id,
           ethErrors.provider.userRejectedRequest().serialize(),
+          err,
         );
       }
 
