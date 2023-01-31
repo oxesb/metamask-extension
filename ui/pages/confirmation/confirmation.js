@@ -40,7 +40,7 @@ import {
   getTemplateState,
 } from './templates';
 
-// TODO(rekmarks): This component and all of its sub-components should probably
+// TODO(remarks): This component and all of its sub-components should probably
 // be renamed to "Dialog", now that we are using it in that manner.
 
 /**
@@ -176,6 +176,7 @@ export default function ConfirmationPage({
   const setInputState = (key, value) => {
     setInputStates((currentState) => ({ ...currentState, [key]: value }));
   };
+  const [loading, setLoading] = useState(false);
 
   ///: BEGIN:ONLY_INCLUDE_IN(flask)
   const snap = useSelector((state) =>
@@ -257,15 +258,17 @@ export default function ConfirmationPage({
     return INPUT_STATE_CONFIRMATIONS.includes(type);
   };
 
-  const handleSubmit = () =>
+  const handleSubmit = async () => {
+    setLoading(true);
     templateState[pendingConfirmation.id]?.useWarningModal
       ? setShowWarningModal(true)
-      : templatedValues.onSubmit(
+      : await templatedValues.onSubmit(
           hasInputState(pendingConfirmation.type)
             ? inputStates[MESSAGE_TYPE.SNAP_DIALOG_PROMPT]
             : null,
         );
-
+    setLoading(false);
+  };
   return (
     <div className="confirmation-page">
       {pendingConfirmations.length > 1 && (
@@ -361,6 +364,8 @@ export default function ConfirmationPage({
         onCancel={templatedValues.onCancel}
         submitText={templatedValues.submitText}
         cancelText={templatedValues.cancelText}
+        loadingText={templatedValues.loadingText}
+        loading={loading}
       />
     </div>
   );

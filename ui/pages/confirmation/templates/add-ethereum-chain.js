@@ -155,7 +155,6 @@ function getState(pendingApproval) {
 
 function getValues(pendingApproval, t, actions, history) {
   const originIsMetaMask = pendingApproval.origin === 'metamask';
-
   return {
     content: [
       {
@@ -181,6 +180,7 @@ function getValues(pendingApproval, t, actions, history) {
           },
         ],
       },
+
       {
         element: 'Typography',
         key: 'title',
@@ -332,6 +332,7 @@ function getValues(pendingApproval, t, actions, history) {
     ],
     cancelText: t('cancel'),
     submitText: t('approveButtonText'),
+    loadingText: t('addingCustomNetwork'),
     onSubmit: async () => {
       let endpointChainId;
       try {

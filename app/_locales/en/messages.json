@@ -370,6 +370,9 @@
   "approveButtonText": {
     "message": "Approve"
   },
+  "addingCustomNetwork": {
+    "message": "Adding Custom RPC..."
+  },
   "approveSpendingCap": {
     "message": "Approve $1 spending cap",
     "description": "The token symbol that is being approved"
