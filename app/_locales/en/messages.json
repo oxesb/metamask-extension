@@ -263,6 +263,9 @@
   "addToken": {
     "message": "Add token"
   },
+  "addingCustomNetwork": {
+    "message": "Adding Custom RPC..."
+  },
   "address": {
     "message": "Address"
   },
@@ -369,9 +372,6 @@
   },
   "approveButtonText": {
     "message": "Approve"
-  },
-  "addingCustomNetwork": {
-    "message": "Adding Custom RPC..."
   },
   "approveSpendingCap": {
     "message": "Approve $1 spending cap",
