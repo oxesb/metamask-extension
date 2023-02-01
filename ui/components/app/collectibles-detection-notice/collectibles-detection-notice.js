@@ -25,11 +25,7 @@ export default function CollectiblesDetectionNotice() {
       <Dialog type="message" className="collectibles-detection-notice__message">
         <Box display={DISPLAY.FLEX}>
           <Box paddingTop={1}>
-            <Icon
-              name={ICON_NAMES.INFO}
-              className="info-circle"
-              color={ICON_COLORS.PRIMARY_DEFAULT}
-            />
+            <Icon name={ICON_NAMES.INFO} color={ICON_COLORS.PRIMARY_DEFAULT} />
           </Box>
           <Box paddingLeft={2}>
             <Typography
