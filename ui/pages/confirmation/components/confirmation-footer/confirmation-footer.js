@@ -42,7 +42,7 @@ ConfirmationFooter.propTypes = {
   cancelText: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   submitText: PropTypes.string.isRequired,
-  loadingText: PropTypes.string.isRequired,
+  loadingText: PropTypes.string,
 
   loading: PropTypes.bool,
 };

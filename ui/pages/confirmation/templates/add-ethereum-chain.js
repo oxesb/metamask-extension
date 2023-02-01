@@ -336,7 +336,6 @@ function getValues(pendingApproval, t, actions, history) {
     loadingText: t('addingCustomNetwork'),
     onSubmit: async () => {
       let endpointChainId;
-      let err;
       try {
         endpointChainId = await jsonRpcRequest(customRpcUrl, 'eth_chainId');
       } catch (_err) {
@@ -344,14 +343,19 @@ function getValues(pendingApproval, t, actions, history) {
         console.error(
           `Request for method 'eth_chainId on ${customRpcUrl} failed`,
         );
-        err = _err;
+        return actions.rejectPendingApproval(
+          pendingApproval.id,
+          ethErrors.rpc.resourceUnavailable().serialize(),
+        );
       }
 
       if (pendingApproval.requestData.chainId !== endpointChainId) {
+        console.error(
+          `Chain ID returned by RPC URL ${customRpcUrl} does not match ${endpointChainId}`,
+        );
         return actions.rejectPendingApproval(
           pendingApproval.id,
-          ethErrors.provider.userRejectedRequest().serialize(),
-          err,
+          ethErrors.rpc.invalidInput().serialize(),
         );
       }
 
