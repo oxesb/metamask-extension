@@ -62,3 +62,4 @@ Also when the transaction is completed / rejected redirect is done to `mostRecen
 - Confirmation components have lot of props passing which can be removed. Values can be obtained from redux state or other contexts directly using hooks. Component [confirm-token-transaction-switch](https://github.com/MetaMask/metamask-extension/blob/develop/ui/pages/confirm-transaction/confirm-token-transaction-switch.js) has a lot of un-necessary props passing which should be removed and will help to refactor routing.
 - Gas polling related code in `/pages/confirm-transaction` can be moved into a hook and included in `pages/confirm-transaction-base` as only those confirmation pages need gas estimates.
 - components in `/pages` folder which do not map to page for a route should be move to `/ui/app` folder.
+- Any re-usable routing related code can be moved to [useRouting](https://github.com/MetaMask/metamask-extension/blob/develop/ui/hooks/useRouting.js) hook.
