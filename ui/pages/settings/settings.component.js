@@ -42,6 +42,7 @@ import ViewSnap from './flask/view-snap';
 ///: END:ONLY_INCLUDE_IN
 import SettingsSearch from './settings-search';
 import SettingsSearchList from './settings-search-list';
+import { Icon, ICON_NAMES } from '../../components/component-library';
 
 class SettingsPage extends PureComponent {
   static propTypes = {
@@ -305,7 +306,7 @@ class SettingsPage extends PureComponent {
           },
           {
             content: t('about'),
-            icon: <i className="fa fa-info-circle" />,
+            icon: <Icon name={ICON_NAMES.INFO} />,
             key: ABOUT_US_ROUTE,
           },
         ]}

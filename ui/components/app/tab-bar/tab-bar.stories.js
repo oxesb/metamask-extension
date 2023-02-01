@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon, ICON_NAMES } from '../../component-library';
 import TabBar from '.';
 
 export default {
@@ -53,7 +54,7 @@ export default {
         key: 'experimental',
       },
       {
-        icon: <i className="fa fa-info-circle" />,
+        icon: <Icon name={ICON_NAMES.INFO} />,
         content: 'About',
         key: 'about',
       },

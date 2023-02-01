@@ -9,10 +9,12 @@ import {
   TEXT_ALIGN,
   FONT_WEIGHT,
   DISPLAY,
+  ICON_COLORS,
 } from '../../../helpers/constants/design-system';
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import Button from '../../ui/button';
 import { EXPERIMENTAL_ROUTE } from '../../../helpers/constants/routes';
+import { Icon, ICON_NAMES } from '../../component-library';
 
 export default function CollectiblesDetectionNotice() {
   const t = useI18nContext();
@@ -23,12 +25,10 @@ export default function CollectiblesDetectionNotice() {
       <Dialog type="message" className="collectibles-detection-notice__message">
         <Box display={DISPLAY.FLEX}>
           <Box paddingTop={1}>
-            <i
-              style={{
-                fontSize: '1rem',
-                color: 'var(--color-primary-default)',
-              }}
-              className="fa fa-info-circle"
+            <Icon
+              name={ICON_NAMES.INFO}
+              className="info-circle"
+              color={ICON_COLORS.PRIMARY_DEFAULT}
             />
           </Box>
           <Box paddingLeft={2}>
