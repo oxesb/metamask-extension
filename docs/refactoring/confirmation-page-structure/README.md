@@ -10,7 +10,7 @@ Currently we have following confirmation pages:
 6. pages/confirm-contract-interaction
 7. pages/confirm-transaction/conf-tx.js
 
-![Confirmation Pages structure](https://raw.githubusercontent.com/MetaMask/metamask-extension/conf_structure_doc/refactoring/confirmation-page-structure/structure.png)
+![Confirmation Pages structure](https://raw.githubusercontent.com/MetaMask/metamask-extension/conf_structure_doc/docs/refactoring/confirmation-page-structure/structure.png)
 
 `confirm-page-container` component helps to define a structure for confirmation pages it includes:
 
