@@ -28,6 +28,7 @@ import {
 
 import { getSettingsRoutes } from '../../helpers/utils/settings-search';
 import AddNetwork from '../../components/app/add-network/add-network';
+import { Icon, ICON_NAMES } from '../../components/component-library';
 import SettingsTab from './settings-tab';
 import AlertsTab from './alerts-tab';
 import NetworksTab from './networks-tab';
@@ -258,7 +259,7 @@ class SettingsPage extends PureComponent {
         tabs={[
           {
             content: t('general'),
-            icon: <i className="fa fa-cog" />,
+            icon: <Icon name={ICON_NAMES.SETTING} />,
             key: GENERAL_ROUTE,
           },
           {
