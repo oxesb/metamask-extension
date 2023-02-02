@@ -264,7 +264,7 @@
     "message": "Add token"
   },
   "addingCustomNetwork": {
-    "message": "Adding Custom RPC..."
+    "message": "Adding RPC..."
   },
   "address": {
     "message": "Address"
