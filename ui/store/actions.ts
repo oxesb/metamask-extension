@@ -2444,13 +2444,19 @@ export function setProviderType(
   };
 }
 
-export function upsertAndSetNetworkConfiguration(
-  rpcUrl: string,
-  chainId: string,
-  ticker: EtherDenomination,
-  chainName: string,
-  rpcPrefs: RPCDefinition['rpcPrefs'],
-): ThunkAction<void, MetaMaskReduxState, unknown, AnyAction> {
+export function upsertAndSetNetworkConfiguration({
+  rpcUrl,
+  chainId,
+  chainName,
+  rpcPrefs,
+  ticker = EtherDenomination.ETH,
+}: {
+  rpcUrl: string;
+  chainId: string;
+  chainName: string;
+  rpcPrefs: RPCDefinition['rpcPrefs'];
+  ticker: string;
+}): ThunkAction<void, MetaMaskReduxState, unknown, AnyAction> {
   return async (dispatch) => {
     log.debug(
       `background.upsertAndSetNetworkConfiguration: ${rpcUrl} ${chainId} ${ticker} ${chainName}`,
@@ -2459,7 +2465,7 @@ export function upsertAndSetNetworkConfiguration(
     try {
       const uuid: string = await submitRequestToBackground(
         'upsertAndSetNetworkConfiguration',
-        [rpcUrl, chainId, ticker, chainName || rpcUrl, rpcPrefs],
+        [{ rpcUrl, chainId, ticker, chainName: chainName || rpcUrl, rpcPrefs }],
       );
       dispatch(setNewNetworkAdded({ uuid, chainName }));
       dispatch(updateNetworkTarget(rpcUrl, uuid));
@@ -2473,15 +2479,15 @@ export function upsertAndSetNetworkConfiguration(
 export function upsertNetworkConfiguration({
   rpcUrl,
   chainId,
-  ticker,
   chainName,
   rpcPrefs,
+  ticker = EtherDenomination.ETH,
 }: {
   rpcUrl: string;
   chainId: string;
-  ticker: EtherDenomination;
   chainName: string;
   rpcPrefs: RPCDefinition['rpcPrefs'];
+  ticker: string;
 }): ThunkAction<void, MetaMaskReduxState, unknown, AnyAction> {
   return async (dispatch) => {
     log.debug(
@@ -2502,14 +2508,21 @@ export function upsertNetworkConfiguration({
   };
 }
 
-export function editAndSetNetworkConfiguration(
-  uuid: string,
-  rpcUrl: string,
-  chainId: string,
-  ticker: EtherDenomination,
-  chainName: string,
-  rpcPrefs: RPCDefinition['rpcPrefs'],
-): ThunkAction<void, MetaMaskReduxState, unknown, AnyAction> {
+export function editAndSetNetworkConfiguration({
+  uuid,
+  rpcUrl,
+  chainId,
+  chainName,
+  rpcPrefs,
+  ticker = EtherDenomination.ETH,
+}: {
+  uuid: string;
+  rpcUrl: string;
+  chainId: string;
+  chainName: string;
+  rpcPrefs: RPCDefinition['rpcPrefs'];
+  ticker: string;
+}): ThunkAction<void, MetaMaskReduxState, unknown, AnyAction> {
   return async (dispatch) => {
     log.debug(`background.removeNetworkConfiguration: ${uuid}`);
     try {
@@ -2522,11 +2535,13 @@ export function editAndSetNetworkConfiguration(
 
     try {
       await submitRequestToBackground('upsertAndSetNetworkConfiguration', [
-        rpcUrl,
-        chainId,
-        ticker,
-        chainName || rpcUrl,
-        rpcPrefs,
+        {
+          rpcUrl,
+          chainId,
+          ticker,
+          chainName: chainName || rpcUrl,
+          rpcPrefs,
+        },
       ]);
 
       dispatch(updateNetworkTarget(rpcUrl, uuid));
@@ -3779,10 +3794,12 @@ export function setFirstTimeFlowType(
   };
 }
 
-export function setSelectedNetworkUUID(networkConfigUUID: string) {
+export function setSelectedNetworkUUID(
+  networkConfigUUID: string,
+): PayloadAction<string> {
   return {
     type: actionConstants.SET_SELECTED_NETWORK_UUID,
-    value: networkConfigUUID,
+    payload: networkConfigUUID,
   };
 }
 
@@ -3792,10 +3809,10 @@ export function setNewNetworkAdded({
 }: {
   uuid: string;
   chainName: string;
-}) {
+}): PayloadAction<object> {
   return {
     type: actionConstants.SET_NEW_NETWORK_ADDED,
-    value: { uuid, chainName },
+    payload: { uuid, chainName },
   };
 }
 

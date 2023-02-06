@@ -336,11 +336,11 @@ export default function reduceApp(
     case actionConstants.SET_SELECTED_NETWORK_UUID:
       return {
         ...appState,
-        selectedNetworkUUID: action.value,
+        selectedNetworkUUID: action.payload,
       };
 
     case actionConstants.SET_NEW_NETWORK_ADDED: {
-      const { uuid, chainName } = action.value;
+      const { uuid, chainName } = action.payload;
       return {
         ...appState,
         newNetworkAddedName: chainName,

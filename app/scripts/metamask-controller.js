@@ -2243,16 +2243,6 @@ export default class MetamaskController extends EventEmitter {
         throw error;
       }
     }
-
-    // return this.networkController.upsertNetworkConfiguration({
-    //   rpcUrl: customRpc.rpcUrl,
-    //   chainId: customRpc.chainId,
-    //   chainName: customRpc.chainName,
-    //   ticker: customRpc.ticker,
-    //   rpcPrefs: {
-    //     blockExplorerUrl: customRpc.rpcPrefs.blockExplorerUrl,
-    //   },
-    // });
   }
 
   async upsertNetworkConfiguration({
@@ -4353,23 +4343,24 @@ export default class MetamaskController extends EventEmitter {
   // Log blocks
 
   /**
-   * A method for selecting a custom URL for an ethereum RPC provider and updating it
+   * Adds a network configuration if the rpcUrl is not already present on an
+   * existing network configuration. Otherwise updates the entry with the matching rpcUrl.
    *
-   * @param {string} rpcUrl - A URL for a valid Ethereum RPC API.
-   * @param {string} chainId - The chainId of the selected network.
-   * @param {string} ticker - The ticker symbol of the selected network.
-   * @param {string} [chainName] - chainName of the selected network.
-   * @param {object} [rpcPrefs] - RPC preferences.
-   * @param {string} [rpcPrefs.blockExplorerUrl] - URL of block explorer for the chain.
-   * @returns {Promise<string>} The RPC Target URL confirmed.
+   * @param config - The network configuration.
+   * @param config.rpcUrl - The network configuration RPC URL.
+   * @param config.chainId - The chain ID of the network, as per EIP-155.
+   * @param config.ticker - Currency ticker.
+   * @param config.chainName - Personalized network name.
+   * @param config.rpcPrefs - Personalized preferences.
+   * @returns uuid for the added or updated network configuration
    */
-  async upsertAndSetNetworkConfiguration(
+  async upsertAndSetNetworkConfiguration({
     rpcUrl,
     chainId,
     ticker = 'ETH',
     chainName,
     rpcPrefs,
-  ) {
+  }) {
     const uuid = await this.upsertNetworkConfiguration({
       rpcUrl,
       chainId,

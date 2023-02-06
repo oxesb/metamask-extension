@@ -1256,7 +1256,7 @@ describe('Actions', () => {
 
       const upsertAndSetNetworkConfigurationStub = sinon
         .stub()
-        .callsFake((_, __, ___, ____, ______, cb) => cb());
+        .callsFake((_, cb) => cb());
 
       background.getApi.returns({
         removeNetworkConfiguration: removeNetworkConfigurationStub,
@@ -1265,14 +1265,14 @@ describe('Actions', () => {
       _setBackgroundConnection(background.getApi());
 
       await store.dispatch(
-        actions.editAndSetNetworkConfiguration(
-          'uuid',
-          'newRpc',
-          '0x',
-          'ETH',
-          'chainName',
-          { blockExplorerUrl: 'etherscan.io' },
-        ),
+        actions.editAndSetNetworkConfiguration({
+          uuid: 'uuid',
+          rpcUrl: 'newRpc',
+          chainId: '0x',
+          ticker: 'ETH',
+          chainName: 'chainName',
+          rpcPrefs: { blockExplorerUrl: 'etherscan.io' },
+        }),
       );
       expect(removeNetworkConfigurationStub.callCount).toStrictEqual(1);
       expect(upsertAndSetNetworkConfigurationStub.callCount).toStrictEqual(1);
@@ -1291,7 +1291,7 @@ describe('Actions', () => {
 
       const upsertAndSetNetworkConfigurationStub = sinon
         .stub()
-        .callsFake((_, __, ___, ____, _____, cb) => cb());
+        .callsFake((_, cb) => cb());
 
       const removeNetworkConfigurationStub = sinon
         .stub()
@@ -1309,14 +1309,14 @@ describe('Actions', () => {
       ];
 
       await store.dispatch(
-        actions.editAndSetNetworkConfiguration(
-          'uuid',
-          'newRpc',
-          'chainId',
-          'ticker',
-          'chainName',
-          {},
-        ),
+        actions.editAndSetNetworkConfiguration({
+          uuid: 'uuid',
+          rpcUrl: 'newRpc',
+          chainId: '0x',
+          ticker: 'ETH',
+          chainName: 'chainName',
+          rpcPrefs: { blockExplorerUrl: 'etherscan.io' },
+        }),
       );
       expect(store.getActions()).toStrictEqual(expectedActions);
     });

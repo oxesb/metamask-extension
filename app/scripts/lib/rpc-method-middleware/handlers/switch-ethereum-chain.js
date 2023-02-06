@@ -65,7 +65,12 @@ async function switchEthereumChainHandler(
 
   const { origin } = req;
 
-  const { chainId } = req.params[0];
+  const { chainId, uuid } = req.params[0];
+
+  if (uuid) {
+    await setNetworkTarget(uuid);
+    return end();
+  }
 
   const otherKeys = Object.keys(omit(req.params[0], ['chainId']));
 

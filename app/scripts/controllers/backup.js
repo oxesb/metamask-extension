@@ -46,7 +46,7 @@ export default class BackupController {
     const userData = {
       preferences: { ...this.preferencesController.store.getState() },
       addressBook: { ...this.addressBookController.state },
-      network: { ...this.networkController.networkConfigurations.getState() },
+      network: { ...this.networkController.store.getState() },
     };
 
     /**

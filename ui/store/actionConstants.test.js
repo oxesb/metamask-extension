@@ -7,7 +7,6 @@ describe('Redux actionConstants', () => {
   describe('UPDATE_NETWORK_TARGET', () => {
     const initialState = {
       metamask: {
-        frequentRpcList: [],
         provider: {
           rpcUrl: 'bar',
         },

@@ -506,31 +506,30 @@ const NetworksForm = ({
       // After this point, isSubmitting will be reset in componentDidUpdate
       if (selectedNetwork.rpcUrl && rpcUrl !== selectedNetwork.rpcUrl) {
         await dispatch(
-          editAndSetNetworkConfiguration(
-            selectedNetwork.uuid,
+          editAndSetNetworkConfiguration({
             rpcUrl,
-            prefixedChainId,
             ticker,
-            networkName,
-            {
+            uuid: selectedNetwork.uuid,
+            chainId: prefixedChainId,
+            chainName: networkName,
+            rpcPrefs: {
               ...rpcPrefs,
               blockExplorerUrl: blockExplorerUrl || rpcPrefs?.blockExplorerUrl,
             },
-          ),
+          }),
         );
       } else {
         uuid = await dispatch(
-          // TODO ALEX : should this be upsertNetworkConfiguration() instead?
-          upsertAndSetNetworkConfiguration(
+          upsertAndSetNetworkConfiguration({
             rpcUrl,
-            prefixedChainId,
             ticker,
-            networkName,
-            {
+            chainId: prefixedChainId,
+            chainName: networkName,
+            rpcPrefs: {
               ...rpcPrefs,
               blockExplorerUrl: blockExplorerUrl || rpcPrefs?.blockExplorerUrl,
             },
-          ),
+          }),
         );
       }
 
