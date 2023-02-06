@@ -10,11 +10,11 @@ import Button from '../../components/ui/button';
 import Box from '../../components/ui/box';
 import Typography from '../../components/ui/typography';
 import {
-  BORDER_STYLE,
-  COLORS,
+  BorderStyle,
+  Color,
   FONT_WEIGHT,
-  SIZES,
-  TYPOGRAPHY,
+  Size,
+  TypographyVariant,
 } from '../../helpers/constants/design-system';
 import WarningPopover from './components/warning-popover';
 import RevealSeedContent from './components/reveal-seed-content';
@@ -70,22 +70,22 @@ class RevealSeedPage extends Component {
       <Box
         className="page-container__warning-container"
         margin={4}
-        borderStyle={BORDER_STYLE.SOLID}
+        borderStyle={BorderStyle.solid}
         borderWidth={1}
-        borderRadius={SIZES.MD}
-        borderColor={COLORS.ERROR_DEFAULT}
+        borderRadius={Size.MD}
+        borderColor={Color.errorDefault}
       >
         <i className="fa fa-eye-slash page-container__warning-icon" />
         <Box className="page-container__warning-message">
           <Typography
-            variant={TYPOGRAPHY.H7}
+            variant={TypographyVariant.H7}
             margin={0}
             className="page-container__warning-title"
           >
             {this.context.t('secretRecoveryPhraseWarningTitle')}
           </Typography>
           <Typography
-            variant={TYPOGRAPHY.H7}
+            variant={TypographyVariant.H7}
             margin={0}
             fontWeight={FONT_WEIGHT.BOLD}
           >
@@ -110,9 +110,9 @@ class RevealSeedPage extends Component {
     return (
       <form onSubmit={() => this.setState({ showPopover: true })}>
         <Typography
-          variant={TYPOGRAPHY.H6}
+          variant={TypographyVariant.H6}
           fontWeight={FONT_WEIGHT.BOLD}
-          color={COLORS.TEXT_DEFAULT}
+          color={Color.textDefault}
           boxProps={{ paddingBottom: 3 }}
           className="input-label"
           htmlFor="password-box"
@@ -212,12 +212,15 @@ class RevealSeedPage extends Component {
     return (
       <Box className="page-container">
         <Box className="page-container__header">
-          <Typography variant={TYPOGRAPHY.H2} className="page-container__title">
+          <Typography
+            variant={TypographyVariant.H2}
+            className="page-container__title"
+          >
             {this.context.t('secretRecoveryPhrase')}
           </Typography>
           <Typography
             className="page-container__subtitle"
-            variant={TYPOGRAPHY.H6}
+            variant={TypographyVariant.H6}
             fontWeight={400}
           >
             {this.context.t('secretRecoveryPhraseDescription', [
@@ -238,7 +241,7 @@ class RevealSeedPage extends Component {
           </Typography>
           <Typography
             className="page-container__subtitle"
-            variant={TYPOGRAPHY.H6}
+            variant={TypographyVariant.H6}
             fontWeight={400}
           >
             {this.context.t('secretRecoveryPhraseNonCustodialDescription', [

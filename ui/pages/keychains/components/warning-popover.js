@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   BLOCK_SIZES,
-  TYPOGRAPHY,
+  TypographyVariant,
 } from '../../../helpers/constants/design-system';
 import Box from '../../../components/ui/box';
 import Button from '../../../components/ui/button';
@@ -24,7 +24,7 @@ export default function WarningPopover({ onClose, onClick }) {
     >
       <Box paddingLeft={7} paddingRight={7} paddingBottom={6}>
         <Typography
-          variant={TYPOGRAPHY.H6}
+          variant={TypographyVariant.H6}
           fontWeight={400}
           boxProps={{ padding: 0, marginBottom: 3 }}
         >
@@ -35,7 +35,7 @@ export default function WarningPopover({ onClose, onClick }) {
           ])}
         </Typography>
         <Typography
-          variant={TYPOGRAPHY.H6}
+          variant={TypographyVariant.H6}
           fontWeight={400}
           boxProps={{ padding: 0, marginBottom: 6 }}
         >

@@ -10,10 +10,10 @@ import Box from '../../../components/ui/box';
 import Typography from '../../../components/ui/typography';
 import {
   DISPLAY,
-  JUSTIFY_CONTENT,
+  JustifyContent,
   FONT_WEIGHT,
-  TYPOGRAPHY,
-  COLORS,
+  TypographyVariant,
+  Color,
 } from '../../../helpers/constants/design-system';
 import { DEFAULT_ROUTE } from '../../../helpers/constants/routes';
 import { MetaMetricsContext } from '../../../contexts/metametrics';
@@ -59,7 +59,7 @@ export default function RevealSeedContent({ seedWords }) {
 
   return (
     <Box className="reveal-seed__container">
-      <Box display={DISPLAY.FLEX} justifyContent={JUSTIFY_CONTENT.SPACE_AROUND}>
+      <Box display={DISPLAY.FLEX} justifyContent={JustifyContent.spaceAround}>
         <div
           className={classnames('reveal-seed__buttons', {
             'reveal-seed__buttons__active': showTextViewSRP,
@@ -67,7 +67,7 @@ export default function RevealSeedContent({ seedWords }) {
           onClick={() => setShowTextViewSRP(true)}
         >
           <Typography
-            variant={TYPOGRAPHY.H6}
+            variant={TypographyVariant.H6}
             fontWeight={FONT_WEIGHT.BOLD}
             className={classnames('reveal-seed__button', {
               'reveal-seed__button__active': showTextViewSRP,
@@ -83,7 +83,7 @@ export default function RevealSeedContent({ seedWords }) {
           onClick={() => setShowTextViewSRP(false)}
         >
           <Typography
-            variant={TYPOGRAPHY.H6}
+            variant={TypographyVariant.H6}
             fontWeight={FONT_WEIGHT.BOLD}
             className={classnames('reveal-seed__button', {
               'reveal-seed__button__active': !showTextViewSRP,
@@ -96,9 +96,9 @@ export default function RevealSeedContent({ seedWords }) {
       {showTextViewSRP ? (
         <Box>
           <Typography
-            variant={TYPOGRAPHY.H6}
+            variant={TypographyVariant.H6}
             fontWeight={FONT_WEIGHT.BOLD}
-            color={COLORS.BLACK}
+            color={Color.BLACK}
             boxProps={{ marginTop: 4 }}
           >
             {t('yourSecretSeedPhrase')}
