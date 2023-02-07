@@ -2837,7 +2837,7 @@ describe('NetworkController', () => {
               controller.getProviderAndBlockTracker();
             await waitForLookupNetworkToComplete({
               controller,
-              operation: async () => {
+              operation: () => {
                 controller.resetConnection();
               },
             });
@@ -3385,7 +3385,7 @@ describe('NetworkController', () => {
               await waitForLookupNetworkToComplete({
                 controller,
                 numberOfNetworkDetailsChanges: 2,
-                operation: async () => {
+                operation: () => {
                   controller.rollbackToPreviousProvider();
                 },
               });
@@ -3432,7 +3432,7 @@ describe('NetworkController', () => {
               await waitForLookupNetworkToComplete({
                 controller,
                 numberOfNetworkDetailsChanges: 2,
-                operation: async () => {
+                operation: () => {
                   controller.rollbackToPreviousProvider();
                 },
               });
@@ -3865,7 +3865,7 @@ describe('NetworkController', () => {
 
             await waitForLookupNetworkToComplete({
               controller,
-              operation: async () => {
+              operation: () => {
                 controller.rollbackToPreviousProvider();
               },
             });
@@ -3911,8 +3911,9 @@ describe('NetworkController', () => {
 
             await waitForLookupNetworkToComplete({
               controller,
+              // TODO: Necessary?
               numberOfNetworkDetailsChanges: 2,
-              operation: async () => {
+              operation: () => {
                 controller.rollbackToPreviousProvider();
               },
             });
