@@ -16,6 +16,11 @@ const configurationPropertyNames = [
   'SENTRY_DSN_DEV',
   'SIWE_V1',
   'SWAPS_USE_DEV_APIS',
+  // Desktop
+  'COMPATIBILITY_VERSION_EXTENSION',
+  'DISABLE_WEB_SOCKET_ENCRYPTION',
+  'METAMASK_DEBUG',
+  'SKIP_OTP_PAIRING_FLOW',
 ];
 
 const productionConfigurationPropertyNames = [
