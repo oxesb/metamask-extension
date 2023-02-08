@@ -52,7 +52,6 @@ const marginSizeControlOptions = [
 
 export default {
   title: 'Components/ComponentLibrary/TextFieldBase',
-
   component: TextFieldBase,
   parameters: {
     docs: {
@@ -151,6 +150,7 @@ export default {
   },
   args: {
     placeholder: 'Placeholder...',
+    value: '',
   },
 };
 
@@ -211,6 +211,10 @@ export const Type = (args) => (
     />
   </Box>
 );
+
+Type.args = {
+  value: undefined,
+};
 
 export const Truncate = Template.bind({});
 Truncate.args = {
@@ -484,8 +488,9 @@ AutoComplete.args = {
 export const AutoFocus = Template.bind({});
 AutoFocus.args = { autoFocus: true };
 
-export const DefaultValue = Template.bind({});
-DefaultValue.args = { defaultValue: 'Default value' };
+export const DefaultValue = () => (
+  <TextFieldBase placeholder="Default value" defaultValue="Default value" />
+);
 
 export const Disabled = Template.bind({});
 Disabled.args = { disabled: true };
