@@ -92,6 +92,7 @@ async function main() {
   }
 
   const configFile = path.join(__dirname, '.mocharc.js');
+  const extraArgs = process.env.E2E_ARGS?.split(' ') || [];
 
   await retry({ retries }, async () => {
     await runInShell('yarn', [
@@ -101,6 +102,7 @@ async function main() {
       '--reporter=xunit',
       '--reporter-option',
       `output=test/test-results/e2e/${testFileName}.xml`,
+      ...extraArgs,
       e2eTestPath,
       exit,
     ]);
