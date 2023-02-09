@@ -13,9 +13,9 @@ import {
   PermissionNamespaces,
   ///: END:ONLY_INCLUDE_IN
 } from '../../../shared/constants/permissions';
+import Tooltip from '../../components/ui/tooltip';
 ///: BEGIN:ONLY_INCLUDE_IN(flask)
 import { SNAPS_METADATA } from '../../../shared/constants/snaps';
-import Tooltip from '../../components/ui/tooltip';
 import { coinTypeToProtocolName, getSnapDerivationPathName } from './util';
 ///: END:ONLY_INCLUDE_IN
 
