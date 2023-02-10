@@ -1894,8 +1894,6 @@ export default class MetamaskController extends EventEmitter {
         appStateController.setShowTestnetMessageInDropdown.bind(
           appStateController,
         ),
-      setShowPortfolioTooltip:
-        appStateController.setShowPortfolioTooltip.bind(appStateController),
       setShowBetaHeader:
         appStateController.setShowBetaHeader.bind(appStateController),
       updateCollectibleDropDownState:

@@ -482,9 +482,6 @@
   "betaMetamaskVersion": {
     "message": "MetaMask-Version"
   },
-  "betaPortfolioSite": {
-    "message": "Beta-Portfolio-Seite"
-  },
   "betaTerms": {
     "message": "Beta-Nutzungsbedingungen"
   },
@@ -1720,9 +1717,6 @@
     "message": "JSON Datei",
     "description": "format for importing an account"
   },
-  "keepTapsOnTokens": {
-    "message": "um ihre Token und NFTs über Konten und Netzwerke hinweg im Auge behalten zu können."
-  },
   "keystone": {
     "message": "Keystone"
   },
@@ -2717,9 +2711,6 @@
   },
   "popularCustomNetworks": {
     "message": "Beliebte benutzerdefinierte Netzwerke"
-  },
-  "portfolioSite": {
-    "message": "Portfolio-Seite"
   },
   "preferredLedgerConnectionType": {
     "message": "Bevorzugter Ledger-Verbindungstyp",
@@ -4106,9 +4097,6 @@
   },
   "tryAgain": {
     "message": "Erneut versuchen"
-  },
-  "tryOur": {
-    "message": "Probieren Sie unser"
   },
   "turnOnTokenDetection": {
     "message": "Erweiterte Token-Erkennung aktivieren"
