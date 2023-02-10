@@ -71,9 +71,9 @@ export const SETTINGS_CONSTANTS = [
   },
   {
     tabMessage: (t) => t('advanced'),
-    sectionMessage: (t) => t('resetAccount'),
-    descriptionMessage: (t) => t('resetAccountDescription'),
-    route: `${ADVANCED_ROUTE}#reset-account`,
+    sectionMessage: (t) => t('clearActivity'),
+    descriptionMessage: (t) => t('clearActivityDescription'),
+    route: `${ADVANCED_ROUTE}#clear-activity`,
     icon: 'fas fa-sliders-h',
   },
   {
@@ -130,6 +130,13 @@ export const SETTINGS_CONSTANTS = [
     sectionMessage: (t) => t('dismissReminderField'),
     descriptionMessage: (t) => t('dismissReminderDescriptionField'),
     route: `${ADVANCED_ROUTE}#dimiss-secretrecovery`,
+    icon: 'fas fa-sliders-h',
+  },
+  {
+    tabMessage: (t) => t('advanced'),
+    sectionMessage: (t) => t('toggleEthSignField'),
+    descriptionMessage: (t) => t('toggleEthSignDescriptionField'),
+    route: `${ADVANCED_ROUTE}#toggle-ethsign`,
     icon: 'fas fa-sliders-h',
   },
   {
@@ -203,14 +210,6 @@ export const SETTINGS_CONSTANTS = [
     descriptionMessage: (t) => t('useMultiAccountBalanceCheckerDescription'),
     route: `${SECURITY_ROUTE}#-use-milti-account-balance-checker`,
     icon: 'fa fa-lock',
-  },
-  {
-    tabMessage: (t) => t('securityAndPrivacy'),
-    sectionMessage: (t) => t('useCollectibleDetection'),
-    descriptionMessage: (t) => t('useCollectibleDetectionDescription'),
-    route: `${SECURITY_ROUTE}#autodetect-nfts`,
-    icon: 'fa fa-flask',
-    featureFlag: 'NFTS_V1',
   },
   {
     tabMessage: (t) => t('securityAndPrivacy'),
@@ -333,6 +332,14 @@ export const SETTINGS_CONSTANTS = [
     sectionMessage: (t) => t('enableOpenSeaAPI'),
     descriptionMessage: (t) => t('enableOpenSeaAPIDescription'),
     route: `${EXPERIMENTAL_ROUTE}#opensea-api`,
+    icon: 'fa fa-flask',
+    featureFlag: 'NFTS_V1',
+  },
+  {
+    tabMessage: (t) => t('experimental'),
+    sectionMessage: (t) => t('useNftDetection'),
+    descriptionMessage: (t) => t('useNftDetectionDescription'),
+    route: `${EXPERIMENTAL_ROUTE}#autodetect-nfts`,
     icon: 'fa fa-flask',
     featureFlag: 'NFTS_V1',
   },

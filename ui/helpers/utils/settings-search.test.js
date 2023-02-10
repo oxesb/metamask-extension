@@ -29,10 +29,10 @@ const t = (key) => {
       return 'State logs contain your public account addresses and sent transactions.';
     case 'syncWithMobile':
       return 'Sync with mobile';
-    case 'resetAccount':
-      return 'Reset account';
-    case 'resetAccountDescription':
-      return 'Resetting your account will clear your transaction history. This will not change the balances in your accounts or require you to re-enter your Secret Recovery Phrase.';
+    case 'clearActivity':
+      return 'Clear activity and nonce data';
+    case 'clearActivityDescription':
+      return "This resets the account's nonce and erases data from the activity tab in your wallet. Only the current account and network will be affected. Your balances and incoming transactions won't change.";
     case 'showAdvancedGasInline':
       return 'Advanced gas controls';
     case 'showAdvancedGasInlineDescription':
@@ -159,7 +159,7 @@ describe('Settings Search Utils', () => {
     });
 
     it('should get good advanced section number', () => {
-      expect(getNumberOfSettingsInSection(t, t('advanced'))).toStrictEqual(13);
+      expect(getNumberOfSettingsInSection(t, t('advanced'))).toStrictEqual(14);
     });
 
     it('should get good contact section number', () => {
