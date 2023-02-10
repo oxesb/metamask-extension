@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import {
   DISPLAY,
   FLEX_DIRECTION,
+  SEVERITIES,
   Size,
 } from '../../../helpers/constants/design-system';
 
@@ -109,7 +110,7 @@ export const FormTextField = ({
           'mm-form-text-field__help-text',
           helpTextProps?.className,
         )}
-        error={error}
+        severity={error && SEVERITIES.DANGER}
         marginTop={1}
         {...helpTextProps}
       >
