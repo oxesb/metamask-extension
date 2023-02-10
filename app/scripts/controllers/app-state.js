@@ -40,7 +40,6 @@ export default class AppStateController extends EventEmitter {
       outdatedBrowserWarningLastShown: new Date().getTime(),
       collectiblesDetectionNoticeDismissed: false,
       showTestnetMessageInDropdown: true,
-      showPortfolioTooltip: true,
       showBetaHeader: isBeta(),
       trezorModel: null,
       ...initState,
