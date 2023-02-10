@@ -26,7 +26,7 @@ component props
 
 Use the `size` prop and the `Size` object from `./ui/helpers/constants/design-system.js` to change the size of `AvatarAccount`
 
-Optional: `AVATAR_ACCOUNT_SIZES` from `./ui/components/component-library` object can be used instead of `SIZES`
+Optional: `AvatarAccountSize` from `./ui/components/component-library` object can be used instead of `SIZES`
 
 Possible sizes include:
 
@@ -62,7 +62,7 @@ Use the `type` prop for the avatar to be rendered, it can either be a Jazzicon o
 </Canvas>
 
 ```jsx
-import { TYPES } from './avatar-account.constants';
+import { TYPES } from './avatar-account.types';
 import { AvatarAccount } from '../ui/component-library';
 
 <AvatarAccount type={TYPES.JAZZICON} />
@@ -78,7 +78,7 @@ Use the required `address` for generating images
 </Canvas>
 
 ```jsx
-import { TYPES } from './avatar-account.constants';
+import { TYPES } from './avatar-account.types';
 import { AvatarAccount } from '../ui/component-library';
 
 <AvatarAccount type={TYPES.JAZZICON} address="0x5CfE73b6021E818B776b421B1c4Db2474086a7e1" />

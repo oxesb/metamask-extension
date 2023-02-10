@@ -8,16 +8,16 @@ import { Size } from '../../../helpers/constants/design-system';
 import Box from '../../ui/box/box';
 
 import {
-  AVATAR_ACCOUNT_DIAMETERS,
-  AVATAR_ACCOUNT_TYPES,
-  AVATAR_ACCOUNT_SIZES,
-} from './avatar-account.constants';
+  AvatarAccountDiameter,
+  AvatarAccountVariant,
+  AvatarAccountSize,
+} from './avatar-account.types';
 
 export const AvatarAccount = ({
   size = Size.MD,
   address,
   className,
-  type,
+  variant,
   ...props
 }) => {
   return (
@@ -26,17 +26,17 @@ export const AvatarAccount = ({
       className={classnames('mm-avatar-account', className)}
       {...props}
     >
-      {type === 'Jazzicon' ? (
+      {variant === 'Jazzicon' ? (
         <Jazzicon
           className={classnames('mm-avatar-account__jazzicon')}
           address={address}
-          diameter={Number(AVATAR_ACCOUNT_DIAMETERS[size])}
+          diameter={Number(AvatarAccountDiameter[size])}
         />
       ) : (
         <BlockieIdenticon
           className={classnames('mm-avatar-account__blockie')}
           address={address}
-          diameter={Number(AVATAR_ACCOUNT_DIAMETERS[size])}
+          diameter={Number(AvatarAccountDiameter[size])}
           borderRadius="50%"
         />
       )}
@@ -50,11 +50,11 @@ AvatarAccount.propTypes = {
    * Possible values could be 'SIZES.XS', 'SIZES.SM', 'SIZES.MD', 'SIZES.LG', 'SIZES.XL'
    * Defaults to SIZES.MD
    */
-  size: PropTypes.oneOf(Object.values(AVATAR_ACCOUNT_SIZES)),
+  size: PropTypes.oneOf(Object.values(AvatarAccountSize)),
   /**
-   * The type of the avatar to be rendered, it can render either a Jazzicon or a Blockie
+   * The variant of the avatar to be rendered, it can render either a Jazzicon or a Blockie
    */
-  type: PropTypes.oneOf(Object.values(AVATAR_ACCOUNT_TYPES)),
+  variant: PropTypes.oneOf(Object.values(AvatarAccountVariant)),
   /**
    * Address used for generating random image
    */

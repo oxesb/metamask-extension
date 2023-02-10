@@ -10,35 +10,35 @@ exports[`AvatarAccount should render correctly 1`] = `
       class="mm-avatar-account__jazzicon"
     >
       <div
-        style="border-radius: 50px; overflow: hidden; padding: 0px; margin: 0px; width: 32px; height: 32px; display: inline-block; background: rgb(249, 108, 1);"
+        style="border-radius: 50px; overflow: hidden; padding: 0px; margin: 0px; display: inline-block; background: rgb(249, 108, 1);"
       >
         <svg
-          height="32"
-          width="32"
+          height="NaN"
+          width="NaN"
           x="0"
           y="0"
         >
           <rect
             fill="#F2CA02"
-            height="32"
-            transform="translate(1.431306801437213 -0.09488555961102602) rotate(529.4 16 16)"
-            width="32"
+            height="NaN"
+            transform="translate(NaN NaN) rotate(529.4 NaN NaN)"
+            width="NaN"
             x="0"
             y="0"
           />
           <rect
             fill="#FAA200"
-            height="32"
-            transform="translate(10.974858326048588 -13.039888710538095) rotate(336.9 16 16)"
-            width="32"
+            height="NaN"
+            transform="translate(NaN NaN) rotate(336.9 NaN NaN)"
+            width="NaN"
             x="0"
             y="0"
           />
           <rect
             fill="#C8142C"
-            height="32"
-            transform="translate(-22.963750275720685 -20.223166935456838) rotate(276.6 16 16)"
-            width="32"
+            height="NaN"
+            transform="translate(NaN NaN) rotate(276.6 NaN NaN)"
+            width="NaN"
             x="0"
             y="0"
           />

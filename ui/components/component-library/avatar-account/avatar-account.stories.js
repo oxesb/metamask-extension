@@ -7,9 +7,9 @@ import {
 } from '../../../helpers/constants/design-system';
 import { AvatarAccount } from './avatar-account';
 import {
-  AVATAR_ACCOUNT_TYPES,
-  AVATAR_ACCOUNT_SIZES,
-} from './avatar-account.constants';
+  AvatarAccountVariant,
+  AvatarAccountSize,
+} from './avatar-account.types';
 
 import README from './README.mdx';
 
@@ -25,18 +25,18 @@ export default {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(AVATAR_ACCOUNT_SIZES),
+      options: Object.values(AvatarAccountSize),
     },
     address: { control: 'text' },
-    type: {
+    variant: {
       control: 'select',
-      options: Object.values(AVATAR_ACCOUNT_TYPES),
+      options: Object.values(AvatarAccountVariant),
     },
   },
   args: {
     address: '0x5CfE73b6021E818B776b421B1c4Db2474086a7e1',
     size: Size.MD,
-    type: AVATAR_ACCOUNT_TYPES.JAZZICON,
+    variant: AvatarAccountVariant.Jazzicon,
   },
 };
 
@@ -55,23 +55,25 @@ export const SizeStory = (args) => (
 );
 SizeStory.storyName = 'Size';
 
-export const Type = (args) => (
+export const VariantStory = (args) => (
   <Box display={DISPLAY.FLEX} alignItems={AlignItems.baseline} gap={1}>
-    <AvatarAccount {...args} type={AVATAR_ACCOUNT_TYPES.JAZZICON} />
-    <AvatarAccount {...args} type={AVATAR_ACCOUNT_TYPES.BLOCKIES} />
+    <AvatarAccount {...args} type={AvatarAccountVariant.Jazzicon} />
+    <AvatarAccount {...args} type={AvatarAccountVariant.Blockies} />
   </Box>
 );
+
+VariantStory.storyName = 'Variant';
 
 export const Address = (args) => (
   <Box display={DISPLAY.FLEX} alignItems={AlignItems.BASELINE} gap={1}>
     <AvatarAccount
       {...args}
-      type={AVATAR_ACCOUNT_TYPES.JAZZICON}
+      type={AvatarAccountVariant.Jazzicon}
       address="0x5CfE73b6021E818B776b421B1c4Db2474086a7e1"
     />
     <AvatarAccount
       {...args}
-      type={AVATAR_ACCOUNT_TYPES.BLOCKIES}
+      type={AvatarAccountVariant.Blockies}
       address="0x0"
     />
   </Box>
