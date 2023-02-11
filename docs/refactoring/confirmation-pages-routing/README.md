@@ -4,9 +4,9 @@ This document details how routing to confirmation pages is currently done and ho
 
 ## Current flow
 
-The current routing to confirmation pages have issues.
+The current flow of routing to confirmation pages have issues.
 
-![Confirmation Pages Routing - Current](https://raw.githubusercontent.com/MetaMask/metamask-extension/conf_structure_doc/docs/refactoring/confirmation-pages-routing/current.png)
+![Confirmation Pages Routing - Current](https://raw.githubusercontent.com/MetaMask/metamask-extension/develop/docs/refactoring/confirmation-pages-routing/current.png)
 
 - There are 2 ways in which confirmation pages can be opened:
   1. User triggers send flow from within Metamask
@@ -14,9 +14,9 @@ The current routing to confirmation pages have issues.
   2. DAPP sends request to Metamask
      - If DAPP send request to Metamask an un-approved transaction or signature request is created in background and UI is triggered (if it is not already open).
      - The router by default renders `pages/home` component. The component find un-approved transaction in state and re-route to **/confirm-transaction**.
-- Router renders `pages/confirm-transaction` for **/confirm-transaction** route.
+- Router renders `pages/confirm-transaction` component for **/confirm-transaction** route.
 - `pages/confirm-transaction` component renders `pages/confirm-transaction-switch` by default for **/confirm-transaction** route (for token methods it renders `pages/confirm-transaction/confirm-token-transaction-switch` which also open `pages/confirm-transaction-switch` by default).
-- `pages/confirm-token-transaction-switch` redirect to specific confirmation page route depending on un-approved transaction or signature request in the state.
+- `pages/confirm-token-switch` redirect to specific confirmation page route depending on un-approved transaction or signature request in the state.
 - `pages/confirm-transaction` is rendred for **/confirm-transaction/${id}/XXXXX** routes
 - Depending on confirmation route components `pages/confirm-transaction` and `pages/confirm-transaction/confirm-token-transaction-switch` renders appropriate confirmation page.
 
@@ -24,7 +24,7 @@ The current routing to confirmation pages have issues.
 
 The proposed routing of confirmation pages looks like.
 
-![Confirmation Pages Routing - Proposed](https://raw.githubusercontent.com/MetaMask/metamask-extension/conf_structure_doc/docs/refactoring/confirmation-pages-routing/proposed.png)
+![Confirmation Pages Routing - Proposed](https://raw.githubusercontent.com/MetaMask/metamask-extension/develop/docs/refactoring/confirmation-pages-routing/proposed.png)
 
 - There are 2 ways in which confirmation pages can be opened:
   1. User triggers send flow from within Metamask
@@ -46,8 +46,11 @@ The proposed routing of confirmation pages looks like.
 | /confirm-transaction/${id}/set-approval-for-all | pages/confirm-approve                |
 | /confirm-transaction/${id}/transfer-from        | pages/confirm-token-transaction-base |
 | /confirm-transaction/${id}/safe-transfer-from   | pages/confirm-token-transaction-base |
-| /confirm-transaction/${id}/token-method         | /pages/confirm-contract-interaction  |
-| /confirm-transaction/${id}/signature-request    | pages/confirm-transaction/conf-tx.js |
+| /confirm-transaction/${id}/token-method         | pages/confirm-contract-interaction   |
+| /confirm-transaction/${id}/signature-request    | pages/confirm-signature-request.js   |
+
+The 4 components `pages/confirm-deploy-contract`,
+`pages/confirm-send-ether`, `pages/confirm-send-token`, `pages/confirm-contract-interaction` are very similar and can be merged. This will be covered in detail in following document about confirmation pages structure.
 
 ## Routing to mostRecentOverviewPage
 
@@ -57,9 +60,13 @@ Also a lot of components check for state update and as soon as state has `0` pen
 
 Also when the transaction is completed / rejected redirect is done to `mostRecentOverviewPage` explicitly which we should continue to do.
 
-## Other areas of code cleanup
+## Areas of code refactoring
 
-- Confirmation components have lot of props passing which can be removed. Values can be obtained from redux state or other contexts directly using hooks. Component [confirm-token-transaction-switch](https://github.com/MetaMask/metamask-extension/blob/develop/ui/pages/confirm-transaction/confirm-token-transaction-switch.js) has a lot of un-necessary props passing which should be removed and will help to refactor routing.
-- Gas polling related code in `/pages/confirm-transaction` can be moved into a hook and included in `pages/confirm-transaction-base` as only those confirmation pages need gas estimates.
-- components in `/pages` folder which do not map to page for a route should be move to `/ui/app` folder.
-- Any re-usable routing related code can be moved to [useRouting](https://github.com/MetaMask/metamask-extension/blob/develop/ui/hooks/useRouting.js) hook.
+- Confirmation components have lot of props passing which needs to be reduced. Values can be obtained from redux state or other contexts directly using hooks. Component [confirm-token-transaction-switch](https://github.com/MetaMask/metamask-extension/blob/develop/ui/pages/confirm-transaction/confirm-token-transaction-switch.js) has a lot of un-necessary props passing which should be removed and will help to further refactor routing.
+- It will be useful to refactor all the confirmation components in `/pages` to functional components to use re-usable hooks.
+- Component `/pages/confirm-transaction-base` does not map to page for a route and can be moved to `/ui/app` folder.
+- Any re-usable routing related code should be moved to [useRouting](https://github.com/MetaMask/metamask-extension/blob/develop/ui/hooks/useRouting.js) hook.
+- Logic to initially check state and redirect to `/pages/confirm-transaction` can better be moved from `/pages/home` to `pages/routes`
+- All the route mapping code should be moved to `/pages/confirm-transaction`, this will require getting rid of route mappings in `/pages/confirm-transaction/confirm-token-transaction-switch`, `/pages/confirm-transaction-switch`.
+- `/pages/confirm-transaction-switch` has the code that check the un-approved trancation / message in state and reditect to a specific route, this code should be moved to a hook and included in `/pages/confirm-transaction` component.
+- During the send flow initiated within metamask user should be redirected to specific confirmations route **/confirm-transaction/${id}/XXXX**

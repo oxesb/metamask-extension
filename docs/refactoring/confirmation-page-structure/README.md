@@ -40,3 +40,5 @@ For developers new to confirmation code it is hard to understand how components 
    - We may also think about getting rid of `confirm-page-container`.
 3. Code cleanup in [confirm-transaction-base](https://github.com/MetaMask/metamask-extension/tree/develop/ui/pages/confirm-transaction-base) component:
    `confirm-transaction-base` component is huge 1200 lines component taking care of lot of complexity.
+
+- Gas polling related code in `/pages/confirm-transaction` can be moved into a hook and included in `pages/confirm-transaction-base` as only those confirmation pages need gas estimates.
