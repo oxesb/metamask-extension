@@ -4519,7 +4519,12 @@ export function setFirstTimeUsedNetwork(chainId: string) {
   return submitRequestToBackground('setFirstTimeUsedNetwork', [chainId]);
 }
 
-export function setOpenSeaTransactionSecurityProviderPopoverHasBeenShown() {
+export function setOpenSeaTransactionSecurityProviderPopoverHasBeenShown(): ThunkAction<
+  void,
+  MetaMaskReduxState,
+  unknown,
+  AnyAction
+> {
   return async (dispatch) => {
     await submitRequestToBackground(
       'setOpenSeaTransactionSecurityProviderPopoverHasBeenShown',
